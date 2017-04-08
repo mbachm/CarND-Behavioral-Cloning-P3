@@ -54,7 +54,34 @@ The model.py file contains the code for training and saving the convolution neur
 
 ####1. An appropriate model architecture has been employed
 
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
+I used the [nvidia model](https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) for my architecture. It consists of the following layers:
+
+| Layer  			| Description         												|
+|:-----------------:|:-----------------------------------------------------------------:|
+| Input 			| 160x320x3 RGB image 												|
+| Normalization 	| Normalization and cropping of images, output 160x220x3 RGB image 	|
+| Convolution2D 5x5 | 2x2 stride, VALID padding 										|
+| RELU          	| Activation 														|
+| Convolution2D 5x5 | 2x2 stride, VALID padding 										|
+| RELU          	| Activation 														|
+| Convolution2D 5x5 | 1x1 stride, VALID padding  										|
+| RELU          	| Activation  														|
+| Convolution2D 3x3 | 1x1 stride, VALID padding  										|
+| RELU          	| Activation														|
+| Convolution2D 3x3 | 1x1 stride, VALID padding  										|
+| Flatten       	| -       	|
+| Dropout       	| Rate: 0.2       | 
+| RELU          	| Activation       |           
+| Dense         	| Output = 100        |                     
+| Dropout       	| Rate: 0.2        |                      
+| RELU          	| Activation        |               
+| Dense         	| Output = 50         |                    
+| Dropout       	| Rate: 0.2          |                      
+| RELU          	| Activation         |                    
+| Dense        		| Output = 10      |                  
+| Dropout       	| Rate: 0.2         |                          
+| RELU          	| Activation         |          
+| Dense         	| Output = 1         | 
 
 The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
 
